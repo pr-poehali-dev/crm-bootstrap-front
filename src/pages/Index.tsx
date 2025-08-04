@@ -67,7 +67,7 @@ const Index = () => {
     { name: 'Раимбергенов Умид', phone: '+7 991 733-00-06', role: 'Техник', status: 'active' }
   ];
 
-  const electricDepartment = [
+  const initialElectricDepartment = [
     { name: 'Ходжаев Окил', phone: '+7 977 936-53-12', role: 'Инженер П/В В и ЦО', task: 'Опрессовка школы 1362 на 1 участке', status: 'working' },
     { name: 'Кузьмин Владимир', phone: '+7 920 240-33-48', role: 'Электромонтёр', task: 'отпуск', status: 'vacation' },
     { name: 'Лазарчук Дмитрий', phone: '+7 965 361-85-34', role: 'Электромонтёр', task: 'ТО на 16-м участке', status: 'working' },
@@ -76,7 +76,7 @@ const Index = () => {
     { name: 'Сёмин Игорь', phone: '+79296729987', role: 'Электромонтер', task: 'ТО на 17-м участке', status: 'working' }
   ];
 
-  const sections = [
+  const initialSections = [
     { number: 1, name: 'Преображенка', brigade: 1, technician: 'Горностаев Сергей', phone: '+79150639051', task: 'опрессовка школы 1362' },
     { number: 2, name: 'Черёмушки', brigade: 1, technician: 'Захарченко Григорий', phone: '8 968 359 21 99', task: 'осмотры, заявки' },
     { number: 3, name: 'Академический', brigade: 1, technician: 'Рашидов Озад', phone: '+7 977 157-92-03', task: 'работа на 15-м участке' },
@@ -86,6 +86,53 @@ const Index = () => {
     { number: 7, name: 'ВДНХ', brigade: 2, technician: 'Гришаков Алексей', phone: '+7 926 869- 52-71', task: 'осмотры, заявки' },
     { number: 8, name: 'Центр', brigade: 2, technician: null, phone: null, task: 'техник отсутствует' },
   ];
+
+  const [selectedDepartment, setSelectedDepartment] = useState('dispatch');
+  const [editingEmployee, setEditingEmployee] = useState<any>(null);
+  const [editingSection, setEditingSection] = useState<any>(null);
+  const [isAddingEmployee, setIsAddingEmployee] = useState(false);
+  const [isAddingSection, setIsAddingSection] = useState(false);
+  const [employeeForm, setEmployeeForm] = useState({
+    name: '',
+    phone: '',
+    role: '',
+    task: '',
+    status: 'active',
+    department: 'emergency'
+  });
+  const [sectionForm, setSectionForm] = useState({
+    number: '',
+    name: '',
+    brigade: 1,
+    technician: '',
+    phone: '',
+    task: ''
+  });
+  
+  // Состояние для управления данными
+  const [emergencyTeamState, setEmergencyTeamState] = useState(initialEmergencyTeam);
+  const [electricDepartmentState, setElectricDepartmentState] = useState(initialElectricDepartment);
+  const [sectionsState, setSectionsState] = useState(initialSections);
+
+  // Данные диспетчерской службы
+  const dispatchService = {
+    main: '+7 991 639-62-20',
+    dispatcher: {
+      name: 'Кипа Елена',
+      phone: '+7 991 639-62-80',
+      status: 'дежурный'
+    },
+    sectionDispatcher: {
+      name: 'Мельникова Оксана', 
+      phone: '+7 991 639-62-01',
+      section: '23 участок'
+    },
+    offDuty: {
+      name: 'Ванькова Виктория',
+      phone: '+7 991 639-62-90',
+      status: 'выходной'
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
