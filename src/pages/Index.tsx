@@ -12,55 +12,8 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
-  const [selectedDepartment, setSelectedDepartment] = useState('dispatch');
-  const [editingEmployee, setEditingEmployee] = useState<any>(null);
-  const [editingSection, setEditingSection] = useState<any>(null);
-  const [isAddingEmployee, setIsAddingEmployee] = useState(false);
-  const [isAddingSection, setIsAddingSection] = useState(false);
-  const [employeeForm, setEmployeeForm] = useState({
-    name: '',
-    phone: '',
-    role: '',
-    task: '',
-    status: 'active',
-    department: 'emergency'
-  });
-  const [sectionForm, setSectionForm] = useState({
-    number: '',
-    name: '',
-    brigade: 1,
-    technician: '',
-    phone: '',
-    task: ''
-  });
-  
-  // Состояние для управления данными
-  const [emergencyTeamState, setEmergencyTeamState] = useState(emergencyTeam);
-  const [electricDepartmentState, setElectricDepartmentState] = useState(electricDepartment);
-  const [sectionsState, setSectionsState] = useState(sections);
-
-  // Данные диспетчерской службы
-  const dispatchService = {
-    main: '+7 991 639-62-20',
-    dispatcher: {
-      name: 'Кипа Елена',
-      phone: '+7 991 639-62-80',
-      status: 'дежурный'
-    },
-    sectionDispatcher: {
-      name: 'Мельникова Оксана', 
-      phone: '+7 991 639-62-01',
-      section: '23 участок'
-    },
-    offDuty: {
-      name: 'Ванькова Виктория',
-      phone: '+7 991 639-62-90',
-      status: 'выходной'
-    }
-  };
-
   // Первоначальные данные
-  const emergencyTeam = [
+  const initialEmergencyTeam = [
     { name: 'Ходжаев Окил', phone: '+7 977 936-53-12', role: 'Электрик', status: 'active' },
     { name: 'Хайриев Фармон', phone: '+7 963 272-33-33', role: 'Сварщик', status: 'active' },
     { name: 'Абдурахимов Муратбек', phone: '+7 996 361-68-45', role: 'Техник', status: 'active' },
@@ -87,6 +40,7 @@ const Index = () => {
     { number: 8, name: 'Центр', brigade: 2, technician: null, phone: null, task: 'техник отсутствует' },
   ];
 
+  // Состояние для управления данными
   const [selectedDepartment, setSelectedDepartment] = useState('dispatch');
   const [editingEmployee, setEditingEmployee] = useState<any>(null);
   const [editingSection, setEditingSection] = useState<any>(null);
@@ -108,8 +62,6 @@ const Index = () => {
     phone: '',
     task: ''
   });
-  
-  // Состояние для управления данными
   const [emergencyTeamState, setEmergencyTeamState] = useState(initialEmergencyTeam);
   const [electricDepartmentState, setElectricDepartmentState] = useState(initialElectricDepartment);
   const [sectionsState, setSectionsState] = useState(initialSections);
